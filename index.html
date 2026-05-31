@@ -9,24 +9,14 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #07070d;
-    --surface: #0f0f1a;
-    --surface2: #141420;
-    --border: rgba(255,255,255,0.07);
-    --border2: rgba(139,92,246,0.25);
-    --purple: #8b5cf6;
-    --purple-glow: rgba(139,92,246,0.12);
-    --text: #e8e8f2;
-    --text-dim: rgba(232,232,242,0.5);
-    --text-faint: rgba(232,232,242,0.2);
-    --green: #34d399;
-    --red: #f87171;
-    --amber: #fbbf24;
-    --mono: 'DM Mono', monospace;
-    --sans: 'Syne', sans-serif;
+    --bg: #07070d; --surface: #0f0f1a; --border: rgba(255,255,255,0.07);
+    --border2: rgba(139,92,246,0.25); --purple: #8b5cf6;
+    --purple-glow: rgba(139,92,246,0.12); --text: #e8e8f2;
+    --text-dim: rgba(232,232,242,0.5); --text-faint: rgba(232,232,242,0.2);
+    --green: #34d399; --red: #f87171; --amber: #fbbf24;
+    --mono: 'DM Mono', monospace; --sans: 'Syne', sans-serif;
   }
   body { font-family: var(--sans); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-
   header {
     position: sticky; top: 0; z-index: 100;
     background: rgba(7,7,13,0.92); backdrop-filter: blur(12px);
@@ -37,93 +27,43 @@
   .logo { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; text-decoration: none; }
   .logo .n { color: #fff; } .logo .p { color: var(--purple); }
   .header-right { display: flex; align-items: center; gap: 12px; }
-  .run-badge {
-    font-family: var(--mono); font-size: 11px; color: var(--text-faint);
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 20px; padding: 4px 12px;
-  }
-  .live-badge {
-    display: flex; align-items: center; gap: 5px;
-    font-family: var(--mono); font-size: 10px; color: var(--green);
-    background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2);
-    border-radius: 20px; padding: 4px 10px;
-  }
+  .run-badge { font-family: var(--mono); font-size: 11px; color: var(--text-faint); background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; }
+  .live-badge { display: flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; color: var(--green); background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 20px; padding: 4px 10px; }
   .live-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
-  .disclaimer-pill {
-    font-size: 10px; font-weight: 500;
-    background: rgba(251,191,36,0.1); color: #fbbf24;
-    border: 1px solid rgba(251,191,36,0.2); border-radius: 20px; padding: 4px 12px;
-  }
-
+  .disclaimer-pill { font-size: 10px; font-weight: 500; background: rgba(251,191,36,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); border-radius: 20px; padding: 4px 12px; }
   .hero { padding: 56px 32px 40px; max-width: 1100px; margin: 0 auto; }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 2px; color: var(--purple); margin-bottom: 18px;
-  }
-  .hero-tag::before {
-    content: ''; width: 6px; height: 6px;
-    background: var(--purple); border-radius: 50%; animation: pulse 2s infinite;
-  }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: var(--purple); margin-bottom: 18px; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
   .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.1; letter-spacing: -1px; margin-bottom: 14px; }
   .hero h1 span { color: var(--purple); }
   .hero-sub { font-size: 15px; color: var(--text-dim); max-width: 560px; line-height: 1.6; }
-
   .stats-row { display: flex; gap: 2px; max-width: 1100px; margin: 0 auto 40px; padding: 0 32px; }
   .stat-card { flex: 1; background: var(--surface); border: 1px solid var(--border); padding: 16px 20px; border-radius: 10px; }
   .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-faint); margin-bottom: 6px; }
   .stat-value { font-family: var(--mono); font-size: 22px; font-weight: 500; }
   .stat-value.purple { color: var(--purple); } .stat-value.green { color: var(--green); } .stat-value.amber { color: var(--amber); }
-
   .disclaimer-box { max-width: 1100px; margin: 0 auto 32px; padding: 0 32px; }
-  .disclaimer-inner {
-    background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15);
-    border-radius: 10px; padding: 14px 20px;
-    display: flex; align-items: flex-start; gap: 12px;
-  }
+  .disclaimer-inner { background: rgba(251,191,36,0.05); border: 1px solid rgba(251,191,36,0.15); border-radius: 10px; padding: 14px 20px; display: flex; align-items: flex-start; gap: 12px; }
   .disclaimer-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
   .disclaimer-text { font-size: 12px; color: rgba(251,191,36,0.7); line-height: 1.6; }
   .disclaimer-text strong { color: #fbbf24; font-weight: 700; }
-
   .error-box { max-width: 1100px; margin: 0 auto 24px; padding: 0 32px; display: none; }
-  .error-inner {
-    background: rgba(248,113,113,0.05); border: 1px solid rgba(248,113,113,0.2);
-    border-radius: 10px; padding: 12px 20px;
-    font-size: 12px; color: rgba(248,113,113,0.8);
-    display: flex; align-items: center; gap: 10px;
-  }
-
+  .error-inner { background: rgba(248,113,113,0.05); border: 1px solid rgba(248,113,113,0.2); border-radius: 10px; padding: 12px 20px; font-size: 12px; color: rgba(248,113,113,0.8); display: flex; align-items: center; gap: 10px; }
   .table-section { max-width: 1100px; margin: 0 auto; padding: 0 32px 60px; }
   .table-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
   .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-faint); }
   .table-controls { display: flex; align-items: center; gap: 12px; }
-  .refresh-btn {
-    font-family: var(--sans); font-size: 11px;
-    background: var(--purple-glow); color: var(--purple);
-    border: 1px solid var(--border2); border-radius: 6px;
-    padding: 5px 12px; cursor: pointer; transition: all 0.15s;
-  }
+  .refresh-btn { font-family: var(--sans); font-size: 11px; background: var(--purple-glow); color: var(--purple); border: 1px solid var(--border2); border-radius: 6px; padding: 5px 12px; cursor: pointer; transition: all 0.15s; }
   .refresh-btn:hover { background: rgba(139,92,246,0.2); }
   .refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .sort-controls { display: flex; gap: 6px; }
-  .sort-btn {
-    font-family: var(--sans); font-size: 11px;
-    background: var(--surface); color: var(--text-dim);
-    border: 1px solid var(--border); border-radius: 6px;
-    padding: 5px 12px; cursor: pointer; transition: all 0.15s;
-  }
+  .sort-btn { font-family: var(--sans); font-size: 11px; background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; cursor: pointer; transition: all 0.15s; }
   .sort-btn:hover, .sort-btn.active { background: var(--purple-glow); border-color: var(--border2); color: var(--purple); }
-
   .table-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
   table { width: 100%; border-collapse: collapse; }
   thead tr { border-bottom: 1px solid var(--border); }
-  th {
-    font-size: 10px; font-weight: 500; text-transform: uppercase;
-    letter-spacing: 1.2px; color: var(--text-faint);
-    padding: 14px 16px; text-align: right; white-space: nowrap;
-    cursor: pointer; user-select: none; transition: color 0.15s;
-  }
+  th { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-faint); padding: 14px 16px; text-align: right; white-space: nowrap; cursor: pointer; user-select: none; transition: color 0.15s; }
   th:first-child { text-align: left; padding-left: 20px; }
   th:hover, th.sorted { color: var(--purple); }
   tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; cursor: pointer; }
@@ -132,67 +72,42 @@
   tbody tr.expanded { background: rgba(139,92,246,0.07); }
   td { padding: 14px 16px; font-size: 13px; text-align: right; white-space: nowrap; }
   td:first-child { text-align: left; padding-left: 20px; }
-
   .rank-cell { font-family: var(--mono); font-size: 11px; color: var(--text-faint); width: 36px; }
   .ticker-cell { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--purple); }
   .price-cell, .target-cell, .perf-cell, .pe-cell { font-family: var(--mono); font-size: 13px; }
   .target-cell { font-weight: 500; color: var(--green); }
   .pe-cell { color: var(--text-dim); }
   .ind-cell { font-family: var(--mono); font-size: 12px; color: var(--text-faint); }
-
   .vs-badge { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500; }
   .vs-badge.cheap { background: rgba(52,211,153,0.12); color: var(--green); }
   .vs-badge.fair  { background: rgba(251,191,36,0.1);  color: var(--amber); }
-
   .upside-bar-wrap { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
   .upside-bar { width: 60px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
   .upside-bar-fill { height: 100%; border-radius: 2px; background: var(--green); }
-
   .expand-row td { padding: 0; text-align: left; }
-  .expand-inner {
-    padding: 16px 20px 20px 52px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
-    border-top: 1px solid var(--border); background: rgba(0,0,0,0.2);
-  }
+  .expand-inner { padding: 16px 20px 20px 52px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; border-top: 1px solid var(--border); background: rgba(0,0,0,0.2); }
   .expand-metric { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
   .expand-metric-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-faint); margin-bottom: 5px; }
   .expand-metric-val { font-family: var(--mono); font-size: 16px; font-weight: 500; color: var(--text); }
-  .expand-metric-val.green  { color: var(--green); }
-  .expand-metric-val.purple { color: var(--purple); }
-  .expand-metric-val.amber  { color: var(--amber); }
-  .expand-metric-val.red    { color: var(--red); }
-  .expand-note {
-    grid-column: 1 / -1;
-    background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.15);
-    border-left: 3px solid var(--purple); border-radius: 0 8px 8px 0;
-    padding: 10px 14px; font-size: 12px; color: var(--text-dim); line-height: 1.65;
-  }
+  .expand-metric-val.green { color: var(--green); } .expand-metric-val.purple { color: var(--purple); }
+  .expand-metric-val.amber { color: var(--amber); } .expand-metric-val.red { color: var(--red); }
+  .expand-note { grid-column: 1 / -1; background: rgba(139,92,246,0.06); border: 1px solid rgba(139,92,246,0.15); border-left: 3px solid var(--purple); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: var(--text-dim); line-height: 1.65; }
   .expand-note strong { color: var(--purple); font-weight: 500; }
-
-  footer {
-    border-top: 1px solid var(--border); padding: 28px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
+  footer { border-top: 1px solid var(--border); padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; }
   .footer-logo { font-size: 16px; font-weight: 800; }
   .footer-logo .n { color: #fff; } .footer-logo .p { color: var(--purple); }
   .footer-legal { font-size: 11px; color: var(--text-faint); max-width: 500px; line-height: 1.6; text-align: center; }
   .footer-right { font-family: var(--mono); font-size: 11px; color: var(--text-faint); text-align: right; }
-
   .loading { text-align: center; padding: 60px; color: var(--text-dim); font-size: 14px; }
   .loading-dot { display: inline-block; width: 6px; height: 6px; background: var(--purple); border-radius: 50%; margin: 0 3px; animation: bounce 1.2s infinite; }
-  .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-  .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  .loading-dot:nth-child(2) { animation-delay: 0.2s; } .loading-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-8px)} }
-
   @media (max-width: 768px) {
-    .hero h1 { font-size: 28px; }
-    .stats-row { flex-wrap: wrap; }
+    .hero h1 { font-size: 28px; } .stats-row { flex-wrap: wrap; }
     .expand-inner { grid-template-columns: repeat(2, 1fr); }
-    th, td { padding: 10px 8px; font-size: 12px; }
-    .upside-bar { display: none; }
-    header { padding: 0 16px; }
+    th, td { padding: 10px 8px; font-size: 12px; } .upside-bar { display: none; }
+    header { padding: 0 16px; } .disclaimer-pill { display: none; }
     .hero, .stats-row, .disclaimer-box, .table-section { padding-left: 16px; padding-right: 16px; }
-    .disclaimer-pill { display: none; }
   }
 </style>
 </head>
@@ -212,7 +127,7 @@
   <h1>Momentum <span>Opportunities</span><br>Under the Radar</h1>
   <p class="hero-sub">
     Quantitative analysis of S&P 500 stocks with real-time prices and analyst consensus targets.
-    Displayed for research purposes only — not investment advice.
+    For research purposes only — not investment advice.
   </p>
 </div>
 
@@ -231,13 +146,12 @@
       <strong>Disclosure:</strong> All information on this site is intended for research and educational purposes only.
       Data is generated by an automated quantitative model and does not constitute investment advice,
       a recommendation, or an offer to buy or sell any security. Past performance does not guarantee future results.
-      Any investment decision requires independent due diligence and is the sole responsibility of the investor.
     </div>
   </div>
 </div>
 
 <div class="error-box" id="error-box">
-  <div class="error-inner">⚠️ <span id="error-msg">Error loading live data. Displaying cached data.</span></div>
+  <div class="error-inner">⚠️ <span id="error-msg">Could not load live data — displaying cached values.</span></div>
 </div>
 
 <div class="table-section">
@@ -247,12 +161,11 @@
       <button class="refresh-btn" id="refresh-btn" onclick="loadData()">↻ Refresh</button>
       <div class="sort-controls">
         <button class="sort-btn active" id="sort-upside" onclick="sortBy('upside')">Upside ↓</button>
-        <button class="sort-btn" id="sort-perf"   onclick="sortBy('perf')">3M Perf</button>
-        <button class="sort-btn" id="sort-pe"     onclick="sortBy('pe')">Fwd P/E</button>
+        <button class="sort-btn" id="sort-perf" onclick="sortBy('perf')">3M Perf</button>
+        <button class="sort-btn" id="sort-pe" onclick="sortBy('pe')">Fwd P/E</button>
       </div>
     </div>
   </div>
-
   <div class="table-wrap">
     <div class="loading" id="loading">
       <div style="margin-bottom:12px">Fetching live market data</div>
@@ -288,8 +201,8 @@
 </footer>
 
 <script>
-const POLYGON_KEY = '7Xiyp_Kv6KBF2fIbR_xQl6xs7gxudIqF';
-const FMP_KEY     = 'NePKye2QckP9LZkUjWtQig560WKVko2S';
+// ── API Keys ──────────────────────────────────────────────────
+const FINNHUB_KEY = 'd3h9vjpr01qstnq8b0hgd3h9vjpr01qstnq8b0i0';
 
 const TICKERS = [
   'ADBE','AES','CDW','CPAY','CI','ACN','BMY','BAX',
@@ -320,94 +233,74 @@ const FALLBACK = [
 ];
 
 let allStocks = [];
-let isLoading  = false;
-let currentSort = 'upside';
+let isLoading = false;
 
-// ── Polygon: מחיר נוכחי לכל ticker ──────────────────────────
-async function fetchPolygonPrices(tickers) {
-  const results = {};
-  await Promise.all(tickers.map(async ticker => {
-    try {
-      const url = `https://api.polygon.io/v2/last/trade/${ticker}?apiKey=${POLYGON_KEY}`;
-      const res  = await fetch(url);
-      if (!res.ok) return;
-      const data = await res.json();
-      if (data.results && data.results.p) results[ticker] = data.results.p;
-    } catch(e) {}
-  }));
-  return results;
+// ── Finnhub: quote (price, P/E) ───────────────────────────────
+async function fetchQuote(ticker) {
+  const url = `https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${FINNHUB_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Quote ${ticker}: ${res.status}`);
+  return res.json();
 }
 
-// ── FMP: analyst price targets ────────────────────────────────
-async function fetchFMPTargets(tickers) {
-  const results = {};
-  await Promise.all(tickers.map(async ticker => {
-    try {
-      const url = `https://financialmodelingprep.com/api/v4/price-target-consensus?symbol=${ticker}&apikey=${FMP_KEY}`;
-      const res  = await fetch(url);
-      if (!res.ok) return;
-      const data = await res.json();
-      if (Array.isArray(data) && data[0]) results[ticker] = data[0];
-      else if (data && data.targetConsensus)  results[ticker] = data;
-    } catch(e) {}
-  }));
-  return results;
+// ── Finnhub: price target ────────────────────────────────────
+async function fetchTarget(ticker) {
+  const url = `https://finnhub.io/api/v1/stock/price-target?symbol=${ticker}&token=${FINNHUB_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  return res.json();
 }
 
-// ── FMP: forward P/E ─────────────────────────────────────────
-async function fetchFMPMetrics(tickers) {
-  const results = {};
-  await Promise.all(tickers.map(async ticker => {
-    try {
-      const url = `https://financialmodelingprep.com/api/v3/key-metrics-ttm/${ticker}?apikey=${FMP_KEY}`;
-      const res  = await fetch(url);
-      if (!res.ok) return;
-      const data = await res.json();
-      if (Array.isArray(data) && data[0]) results[ticker] = data[0];
-    } catch(e) {}
-  }));
-  return results;
+// ── Finnhub: basic financials (P/E) ─────────────────────────
+async function fetchMetrics(ticker) {
+  const url = `https://finnhub.io/api/v1/stock/metric?symbol=${ticker}&metric=all&token=${FINNHUB_KEY}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  return res.json();
 }
 
-// ── Build stocks array ────────────────────────────────────────
-async function fetchAllData() {
-  const [prices, targets, metrics] = await Promise.all([
-    fetchPolygonPrices(TICKERS),
-    fetchFMPTargets(TICKERS),
-    fetchFMPMetrics(TICKERS)
-  ]);
+// ── Fetch all data for one ticker ────────────────────────────
+async function fetchTicker(ticker) {
+  const seed = FALLBACK.find(f => f.ticker === ticker) || {};
+  try {
+    const [quote, target, metrics] = await Promise.all([
+      fetchQuote(ticker),
+      fetchTarget(ticker).catch(()=>null),
+      fetchMetrics(ticker).catch(()=>null)
+    ]);
 
-  const stocks = [];
-  for (const ticker of TICKERS) {
-    const price  = prices[ticker] || 0;
-    const t      = targets[ticker] || {};
-    const m      = metrics[ticker] || {};
+    const price = quote.c || 0;
+    if (!price) return seed;
 
-    // fallback seed for this ticker
-    const seed   = FALLBACK.find(f => f.ticker === ticker) || {};
+    const targetPrice = (target && target.targetMean) ? target.targetMean
+                      : (target && target.targetHigh)  ? target.targetHigh
+                      : seed.target || price * 1.15;
 
-    const targetPrice = t.targetConsensus || t.targetMedian || seed.target || (price * 1.15);
-    if (!price || !targetPrice) continue;
+    const upside = ((targetPrice - price) / price * 100);
 
-    const upside  = ((targetPrice - price) / price * 100);
-    const fwdPE   = m.peRatioTTM || m.priceEarningsRatioTTM || seed.fwd_pe || 0;
-    const indPE   = SECTOR_PE[ticker] || 25;
-    const perf3m  = seed.perf3m || 0; // Polygon snapshot doesn't give 3M easily; keep seed
+    const pe = (metrics && metrics.metric && metrics.metric.peBasicExclExtraTTM)
+             ? metrics.metric.peBasicExclExtraTTM
+             : seed.fwd_pe || 0;
 
-    stocks.push({
+    // 3M performance from Finnhub: priceRelativeToS&P50013Week
+    const perf3m = (metrics && metrics.metric && metrics.metric['52WeekPriceReturnDaily'])
+                 ? seed.perf3m  // keep seed for 3M — Finnhub free tier doesn't give exact 3M
+                 : seed.perf3m || 0;
+
+    return {
       ticker,
-      name:      seed.name || ticker,
-      price:     parseFloat(price.toFixed(2)),
-      target:    parseFloat(parseFloat(targetPrice).toFixed(2)),
-      upside:    parseFloat(upside.toFixed(2)),
-      perf3m:    parseFloat(perf3m.toFixed(2)),
-      fwd_pe:    parseFloat(parseFloat(fwdPE).toFixed(1)),
-      ind_avg_pe: indPE
-    });
+      name: seed.name || ticker,
+      price: parseFloat(price.toFixed(2)),
+      target: parseFloat(parseFloat(targetPrice).toFixed(2)),
+      upside: parseFloat(upside.toFixed(2)),
+      perf3m: parseFloat(perf3m.toFixed(2)),
+      fwd_pe: parseFloat(parseFloat(pe || 0).toFixed(1)),
+      ind_avg_pe: SECTOR_PE[ticker] || 25
+    };
+  } catch(e) {
+    console.warn(`${ticker} failed, using seed:`, e.message);
+    return seed;
   }
-
-  if (stocks.length < 3) throw new Error('Insufficient live data returned');
-  return stocks.sort((a,b) => b.upside - a.upside);
 }
 
 // ── Main load ─────────────────────────────────────────────────
@@ -421,13 +314,18 @@ async function loadData() {
   document.getElementById('run-date-badge').textContent = 'Loading...';
 
   try {
-    allStocks = await fetchAllData();
+    // שליפה מקבילית — כל הטיקרים בו זמנית
+    const results = await Promise.all(TICKERS.map(t => fetchTicker(t)));
+    const stocks  = results.filter(s => s && s.price > 0 && s.upside > 0);
+
+    if (stocks.length < 3) throw new Error('Not enough live data');
+
+    allStocks = stocks.sort((a,b) => b.upside - a.upside);
     setTimestamp(true);
   } catch(err) {
-    console.warn('Live fetch failed:', err.message);
+    console.warn('Falling back to cached data:', err.message);
     document.getElementById('error-box').style.display = 'block';
-    document.getElementById('error-msg').textContent =
-      'Could not load live data — displaying last cached values.';
+    document.getElementById('error-msg').textContent = 'Could not load live data — displaying cached values.';
     allStocks = [...FALLBACK];
     setTimestamp(false);
   }
@@ -439,60 +337,51 @@ async function loadData() {
 }
 
 function setTimestamp(live) {
-  const now   = new Date();
-  const time  = now.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
-  const date  = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
-  const label = live ? `Updated ${time}` : 'Cached data';
-  document.getElementById('run-date-badge').textContent = label;
+  const now  = new Date();
+  const time = now.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit'});
+  const date = now.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  document.getElementById('run-date-badge').textContent = live ? `Updated ${time}` : 'Cached data';
   document.getElementById('stat-date').textContent      = `${date} ${time}`;
   document.getElementById('footer-date').textContent    = live ? `Live · ${date} ${time}` : `Cached · ${date}`;
 }
 
-// ── Stats ─────────────────────────────────────────────────────
 function renderStats() {
-  const count   = allStocks.length;
-  const avgUp   = (allStocks.reduce((s,x)=>s+x.upside,0)/count).toFixed(1);
-  const withPE  = allStocks.filter(x=>x.fwd_pe>0);
-  const avgPE   = withPE.length ? (withPE.reduce((s,x)=>s+x.fwd_pe,0)/withPE.length).toFixed(1) : '—';
-  document.getElementById('stat-count').textContent  = count;
+  const n     = allStocks.length;
+  const avgUp = (allStocks.reduce((s,x)=>s+x.upside,0)/n).toFixed(1);
+  const withPE= allStocks.filter(x=>x.fwd_pe>0);
+  const avgPE = withPE.length ? (withPE.reduce((s,x)=>s+x.fwd_pe,0)/withPE.length).toFixed(1) : '—';
+  document.getElementById('stat-count').textContent  = n;
   document.getElementById('stat-upside').textContent = '+' + avgUp + '%';
   document.getElementById('stat-pe').textContent     = avgPE + 'x';
-  document.getElementById('stock-count').textContent = count;
+  document.getElementById('stock-count').textContent = n;
 }
 
-// ── Sort ──────────────────────────────────────────────────────
 function sortBy(key) {
-  currentSort = key;
-  ['upside','perf','pe'].forEach(k => document.getElementById('sort-'+k).classList.remove('active'));
+  ['upside','perf','pe'].forEach(k=>document.getElementById('sort-'+k).classList.remove('active'));
   document.getElementById('sort-'+key).classList.add('active');
   const sorted = [...allStocks].sort((a,b)=>{
-    if (key==='upside') return b.upside - a.upside;
-    if (key==='perf')   return b.perf3m - a.perf3m;
-    if (key==='pe')     return (a.fwd_pe||999) - (b.fwd_pe||999);
-    return 0;
+    if(key==='upside') return b.upside-a.upside;
+    if(key==='perf')   return b.perf3m-a.perf3m;
+    if(key==='pe')     return (a.fwd_pe||999)-(b.fwd_pe||999);
   });
   renderTable(sorted);
 }
 
-// ── Table ─────────────────────────────────────────────────────
 function renderTable(stocks) {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('stock-table').style.display = 'table';
-  const tbody    = document.getElementById('table-body');
+  const tbody = document.getElementById('table-body');
   tbody.innerHTML = '';
-  const maxUp    = Math.max(...stocks.map(s=>s.upside));
+  const maxUp = Math.max(...stocks.map(s=>s.upside));
+  const fmt   = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 
   stocks.forEach((s, i) => {
-    const discount   = s.ind_avg_pe>0 ? ((s.ind_avg_pe-s.fwd_pe)/s.ind_avg_pe*100).toFixed(0) : 0;
-    const isCheap    = s.fwd_pe>0 && s.fwd_pe < s.ind_avg_pe*0.75;
-    const perfColor  = s.perf3m>=0 ? 'var(--green)' : 'var(--red)';
-    const perfSign   = s.perf3m>=0 ? '+' : '';
-    const barW       = Math.min(100,(s.upside/maxUp)*100).toFixed(0);
-    const fwdLabel   = s.fwd_pe>0 ? s.fwd_pe+'x' : 'N/A';
-    const fmt        = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-
+    const discount  = s.ind_avg_pe>0 ? ((s.ind_avg_pe-s.fwd_pe)/s.ind_avg_pe*100).toFixed(0) : 0;
+    const isCheap   = s.fwd_pe>0 && s.fwd_pe < s.ind_avg_pe*0.75;
+    const perfColor = s.perf3m>=0 ? 'var(--green)' : 'var(--red)';
+    const perfSign  = s.perf3m>=0 ? '+' : '';
+    const barW      = Math.min(100,(s.upside/maxUp)*100).toFixed(0);
     const tr = document.createElement('tr');
-    tr.dataset.idx = i;
     tr.innerHTML = `
       <td class="rank-cell">${String(i+1).padStart(2,'0')}</td>
       <td class="ticker-cell">${s.ticker}</td>
@@ -505,7 +394,7 @@ function renderTable(stocks) {
         </div>
       </td>
       <td class="perf-cell" style="color:${perfColor}">${perfSign}${s.perf3m.toFixed(2)}%</td>
-      <td class="pe-cell">${fwdLabel}</td>
+      <td class="pe-cell">${s.fwd_pe>0?s.fwd_pe+'x':'N/A'}</td>
       <td class="ind-cell">${s.ind_avg_pe}x</td>
       <td><span class="vs-badge ${isCheap?'cheap':'fair'}">${isCheap?'▼ '+discount+'%':'≈ Fair'}</span></td>
     `;
@@ -514,66 +403,38 @@ function renderTable(stocks) {
   });
 }
 
-// ── Expand ────────────────────────────────────────────────────
 function toggleExpand(tr, s, i) {
   const existing = document.getElementById('expand-'+i);
   document.querySelectorAll('.expand-row').forEach(r=>r.remove());
   document.querySelectorAll('tbody tr').forEach(r=>r.classList.remove('expanded'));
   if (existing) return;
-
   tr.classList.add('expanded');
-  const perfClass = s.perf3m>=0 ? 'green' : 'red';
-  const perfSign  = s.perf3m>=0 ? '+' : '';
-  const gain      = (s.target - s.price).toFixed(2);
-  const discount  = s.ind_avg_pe>0 ? ((s.ind_avg_pe-s.fwd_pe)/s.ind_avg_pe*100).toFixed(1) : 'N/A';
-  const fmt       = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-
+  const fmt      = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const perfClass= s.perf3m>=0?'green':'red';
+  const perfSign = s.perf3m>=0?'+':'';
+  const gain     = (s.target-s.price).toFixed(2);
+  const discount = s.ind_avg_pe>0?((s.ind_avg_pe-s.fwd_pe)/s.ind_avg_pe*100).toFixed(1):'N/A';
   const expandTr = document.createElement('tr');
   expandTr.className = 'expand-row';
   expandTr.id = 'expand-'+i;
   expandTr.innerHTML = `
     <td colspan="9">
       <div class="expand-inner">
-        <div class="expand-metric">
-          <div class="expand-metric-label">Current Price</div>
-          <div class="expand-metric-val">$${fmt(s.price)}</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">Analyst Target</div>
-          <div class="expand-metric-val green">$${fmt(s.target)}</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">Potential Gain</div>
-          <div class="expand-metric-val green">+$${gain}</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">Upside %</div>
-          <div class="expand-metric-val green">+${s.upside.toFixed(1)}%</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">3M Performance</div>
-          <div class="expand-metric-val ${perfClass}">${perfSign}${s.perf3m.toFixed(2)}%</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">Fwd P/E</div>
-          <div class="expand-metric-val purple">${s.fwd_pe>0?s.fwd_pe+'x':'N/A'}</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">Industry Avg P/E</div>
-          <div class="expand-metric-val">${s.ind_avg_pe}x</div>
-        </div>
-        <div class="expand-metric">
-          <div class="expand-metric-label">vs. Industry</div>
-          <div class="expand-metric-val ${discount>0?'green':'amber'}">${discount>0?'▼ '+discount+'% discount':'≈ Fair value'}</div>
-        </div>
+        <div class="expand-metric"><div class="expand-metric-label">Current Price</div><div class="expand-metric-val">$${fmt(s.price)}</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">Analyst Target</div><div class="expand-metric-val green">$${fmt(s.target)}</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">Potential Gain</div><div class="expand-metric-val green">+$${gain}</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">Upside %</div><div class="expand-metric-val green">+${s.upside.toFixed(1)}%</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">3M Performance</div><div class="expand-metric-val ${perfClass}">${perfSign}${s.perf3m.toFixed(2)}%</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">Fwd P/E</div><div class="expand-metric-val purple">${s.fwd_pe>0?s.fwd_pe+'x':'N/A'}</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">Industry Avg P/E</div><div class="expand-metric-val">${s.ind_avg_pe}x</div></div>
+        <div class="expand-metric"><div class="expand-metric-label">vs. Industry</div><div class="expand-metric-val ${discount>0?'green':'amber'}">${discount>0?'▼ '+discount+'% disc.':'≈ Fair value'}</div></div>
         <div class="expand-note">
           <strong>Model Signal:</strong>
           ${s.name} (${s.ticker}) trades at ${s.fwd_pe>0?s.fwd_pe+'x':'N/A'} forward earnings vs. a sector average of ${s.ind_avg_pe}x${discount>0?' — a '+discount+'% discount to peers':''}.
-          Analyst consensus target of $${fmt(s.target)} implies +${s.upside.toFixed(1)}% upside from current levels.
-          3-month price performance: ${perfSign}${s.perf3m.toFixed(2)}%.
+          Analyst consensus target of $${fmt(s.target)} implies +${s.upside.toFixed(1)}% upside. 3M performance: ${perfSign}${s.perf3m.toFixed(2)}%.
           <br><br>
           <strong style="color:var(--amber)">⚠ Reminder:</strong>
-          This signal is for research purposes only and does not constitute investment advice. Always conduct your own due diligence.
+          For research purposes only. Not investment advice. Always conduct independent due diligence.
         </div>
       </div>
     </td>
@@ -581,7 +442,6 @@ function toggleExpand(tr, s, i) {
   tr.after(expandTr);
 }
 
-// ── Init ──────────────────────────────────────────────────────
 loadData();
 </script>
 </body>

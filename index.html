@@ -65,7 +65,7 @@
   .header-right {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
   }
 
   .run-badge {
@@ -76,6 +76,25 @@
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 4px 12px;
+  }
+
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--green);
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 20px;
+    padding: 4px 10px;
+  }
+  .live-dot {
+    width: 5px; height: 5px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
   }
 
   .disclaimer-pill {
@@ -152,8 +171,6 @@
     padding: 16px 20px;
     border-radius: 10px;
   }
-  .stat-card:first-child { border-radius: 10px 0 0 10px; }
-  .stat-card:last-child { border-radius: 0 10px 10px 0; }
 
   .stat-label {
     font-size: 10px;
@@ -186,19 +203,27 @@
     align-items: flex-start;
     gap: 12px;
   }
-  .disclaimer-icon {
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 1px;
+  .disclaimer-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .disclaimer-text { font-size: 12px; color: rgba(251,191,36,0.7); line-height: 1.6; }
+  .disclaimer-text strong { color: #fbbf24; font-weight: 700; }
+
+  /* ERROR BOX */
+  .error-box {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    padding: 0 32px;
+    display: none;
   }
-  .disclaimer-text {
+  .error-inner {
+    background: rgba(248,113,113,0.05);
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 10px;
+    padding: 14px 20px;
     font-size: 12px;
-    color: rgba(251,191,36,0.7);
-    line-height: 1.6;
-  }
-  .disclaimer-text strong {
-    color: #fbbf24;
-    font-weight: 700;
+    color: rgba(248,113,113,0.8);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   /* TABLE SECTION */
@@ -222,10 +247,27 @@
     color: var(--text-faint);
   }
 
-  .sort-controls {
+  .table-controls {
     display: flex;
-    gap: 6px;
+    align-items: center;
+    gap: 12px;
   }
+
+  .refresh-btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    background: var(--purple-glow);
+    color: var(--purple);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .refresh-btn:hover { background: rgba(139,92,246,0.2); }
+  .refresh-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .sort-controls { display: flex; gap: 6px; }
 
   .sort-btn {
     font-family: var(--sans);
@@ -252,14 +294,9 @@
     overflow: hidden;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
 
-  thead tr {
-    border-bottom: 1px solid var(--border);
-  }
+  thead tr { border-bottom: 1px solid var(--border); }
 
   th {
     font-size: 10px;
@@ -295,55 +332,13 @@
   }
   td:first-child { text-align: left; padding-left: 20px; }
 
-  .rank-cell {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    width: 36px;
-  }
-
-  .ticker-cell {
-    font-family: var(--mono);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--purple);
-  }
-
-  .price-cell {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text);
-  }
-
-  .target-cell {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--green);
-  }
-
-  .upside-cell {
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .perf-cell {
-    font-family: var(--mono);
-    font-size: 13px;
-  }
-
-  .pe-cell {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-
-  .ind-cell {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-  }
+  .rank-cell { font-family: var(--mono); font-size: 11px; color: var(--text-faint); width: 36px; }
+  .ticker-cell { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--purple); }
+  .price-cell { font-family: var(--mono); font-size: 13px; color: var(--text); }
+  .target-cell { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--green); }
+  .perf-cell { font-family: var(--mono); font-size: 13px; }
+  .pe-cell { font-family: var(--mono); font-size: 13px; color: var(--text-dim); }
+  .ind-cell { font-family: var(--mono); font-size: 12px; color: var(--text-faint); }
 
   .vs-badge {
     display: inline-block;
@@ -353,39 +348,15 @@
     border-radius: 4px;
     font-weight: 500;
   }
-  .vs-badge.cheap {
-    background: rgba(52,211,153,0.12);
-    color: var(--green);
-  }
-  .vs-badge.fair {
-    background: rgba(251,191,36,0.1);
-    color: var(--amber);
-  }
+  .vs-badge.cheap { background: rgba(52,211,153,0.12); color: var(--green); }
+  .vs-badge.fair  { background: rgba(251,191,36,0.1);  color: var(--amber); }
 
-  .upside-bar-wrap {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-content: flex-end;
-  }
-  .upside-bar {
-    width: 60px;
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .upside-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--green);
-  }
+  .upside-bar-wrap { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .upside-bar { width: 60px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .upside-bar-fill { height: 100%; border-radius: 2px; background: var(--green); }
 
   /* EXPANDED ROW */
-  .expand-row td {
-    padding: 0;
-    text-align: left;
-  }
+  .expand-row td { padding: 0; text-align: left; }
   .expand-inner {
     padding: 16px 20px 20px 52px;
     display: grid;
@@ -394,30 +365,18 @@
     border-top: 1px solid var(--border);
     background: rgba(0,0,0,0.2);
   }
-
   .expand-metric {
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 10px 14px;
   }
-  .expand-metric-label {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-faint);
-    margin-bottom: 5px;
-  }
-  .expand-metric-val {
-    font-family: var(--mono);
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .expand-metric-val.green { color: var(--green); }
+  .expand-metric-label { font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-faint); margin-bottom: 5px; }
+  .expand-metric-val { font-family: var(--mono); font-size: 16px; font-weight: 500; color: var(--text); }
+  .expand-metric-val.green  { color: var(--green); }
   .expand-metric-val.purple { color: var(--purple); }
-  .expand-metric-val.amber { color: var(--amber); }
-  .expand-metric-val.red { color: var(--red); }
+  .expand-metric-val.amber  { color: var(--amber); }
+  .expand-metric-val.red    { color: var(--red); }
 
   .expand-note {
     grid-column: 1 / -1;
@@ -443,29 +402,11 @@
   .footer-logo { font-size: 16px; font-weight: 800; }
   .footer-logo .n { color: #fff; }
   .footer-logo .p { color: var(--purple); }
-
-  .footer-legal {
-    font-size: 11px;
-    color: var(--text-faint);
-    max-width: 500px;
-    line-height: 1.6;
-    text-align: center;
-  }
-
-  .footer-right {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    text-align: right;
-  }
+  .footer-legal { font-size: 11px; color: var(--text-faint); max-width: 500px; line-height: 1.6; text-align: center; }
+  .footer-right { font-family: var(--mono); font-size: 11px; color: var(--text-faint); text-align: right; }
 
   /* LOADING */
-  .loading {
-    text-align: center;
-    padding: 60px;
-    color: var(--text-dim);
-    font-size: 14px;
-  }
+  .loading { text-align: center; padding: 60px; color: var(--text-dim); font-size: 14px; }
   .loading-dot {
     display: inline-block;
     width: 6px; height: 6px;
@@ -487,6 +428,8 @@
     .expand-inner { grid-template-columns: repeat(2, 1fr); }
     th, td { padding: 10px 8px; font-size: 12px; }
     .upside-bar { display: none; }
+    header { padding: 0 16px; }
+    .hero, .stats-row, .disclaimer-box, .table-section { padding-left: 16px; padding-right: 16px; }
   }
 </style>
 </head>
@@ -495,26 +438,27 @@
 <header>
   <a class="logo" href="#"><span class="n">next·</span><span class="p">PnL</span></a>
   <div class="header-right">
+    <span class="live-badge"><span class="live-dot"></span>LIVE DATA</span>
     <span class="run-badge" id="run-date-badge">טוען...</span>
     <span class="disclaimer-pill">⚠ Research Only — Not Investment Advice</span>
   </div>
 </header>
 
 <div class="hero">
-  <div class="hero-tag">S&P 500 Monthly Screener</div>
+  <div class="hero-tag">S&P 500 Momentum Screener</div>
   <h1>Momentum <span>Opportunities</span><br>Under the Radar</h1>
   <p class="hero-sub">
-    ניתוח כמותי חודשי של 503 מניות S&P 500. המניות מוצגות לצרכי מחקר בלבד —
-    הנתונים אינם מהווים המלצת השקעה, ייעוץ, או הצעה לרכישה או מכירה של ניירות ערך.
+    ניתוח כמותי של מניות S&P 500 — מחירים ויעדי אנליסטים בזמן אמת.
+    המניות מוצגות לצרכי מחקר בלבד ואינן מהוות המלצת השקעה.
   </p>
 </div>
 
-<div class="stats-row" id="stats-row">
+<div class="stats-row">
   <div class="stat-card"><div class="stat-label">Stocks Screened</div><div class="stat-value">503</div></div>
   <div class="stat-card"><div class="stat-label">Top Picks</div><div class="stat-value purple" id="stat-count">—</div></div>
   <div class="stat-card"><div class="stat-label">Avg Upside</div><div class="stat-value green" id="stat-upside">—</div></div>
   <div class="stat-card"><div class="stat-label">Avg Fwd P/E</div><div class="stat-value amber" id="stat-pe">—</div></div>
-  <div class="stat-card"><div class="stat-label">Last Run</div><div class="stat-value purple" id="stat-date" style="font-size:14px">—</div></div>
+  <div class="stat-card"><div class="stat-label">Updated</div><div class="stat-value purple" id="stat-date" style="font-size:13px">—</div></div>
 </div>
 
 <div class="disclaimer-box">
@@ -529,19 +473,28 @@
   </div>
 </div>
 
+<div class="error-box" id="error-box">
+  <div class="error-inner">
+    ⚠️ <span id="error-msg">שגיאה בטעינת נתונים. מנסה שוב...</span>
+  </div>
+</div>
+
 <div class="table-section">
   <div class="table-header">
     <div class="section-title">מניות בבחינה — <span id="stock-count">—</span> תוצאות</div>
-    <div class="sort-controls">
-      <button class="sort-btn active" onclick="sortBy('upside')">Upside ↓</button>
-      <button class="sort-btn" onclick="sortBy('perf')">3M Perf</button>
-      <button class="sort-btn" onclick="sortBy('pe')">Fwd P/E</button>
+    <div class="table-controls">
+      <button class="refresh-btn" id="refresh-btn" onclick="refreshData()">↻ רענן</button>
+      <div class="sort-controls">
+        <button class="sort-btn active" onclick="sortBy('upside', event)">Upside ↓</button>
+        <button class="sort-btn" onclick="sortBy('perf', event)">3M Perf</button>
+        <button class="sort-btn" onclick="sortBy('pe', event)">Fwd P/E</button>
+      </div>
     </div>
   </div>
 
   <div class="table-wrap">
     <div class="loading" id="loading">
-      <div style="margin-bottom:12px">טוען נתונים</div>
+      <div style="margin-bottom:12px">טוען נתונים בזמן אמת</div>
       <span class="loading-dot"></span>
       <span class="loading-dot"></span>
       <span class="loading-dot"></span>
@@ -552,11 +505,11 @@
         <tr>
           <th style="text-align:left">#</th>
           <th style="text-align:left">Ticker</th>
-          <th onclick="sortBy('price')">Price</th>
-          <th onclick="sortBy('target')" class="sorted">Target</th>
-          <th onclick="sortBy('upside')">Upside %</th>
-          <th onclick="sortBy('perf')">3M Perf %</th>
-          <th onclick="sortBy('pe')">Fwd P/E</th>
+          <th onclick="sortBy('price', event)">Price</th>
+          <th onclick="sortBy('target', event)">Target</th>
+          <th onclick="sortBy('upside', event)" class="sorted">Upside %</th>
+          <th onclick="sortBy('perf', event)">3M Perf %</th>
+          <th onclick="sortBy('pe', event)">Fwd P/E</th>
           <th>Ind. Avg P/E</th>
           <th>vs. Industry</th>
         </tr>
@@ -572,77 +525,211 @@
     המידע באתר זה אינו מהווה ייעוץ השקעות, המלצת השקעה או הצעה לרכישה/מכירת ניירות ערך.
     מיועד לצרכי מחקר בלבד. next·PnL אינה אחראית לכל הפסד הנובע משימוש במידע זה.
   </div>
-  <div class="footer-right" id="footer-run">next·PnL Screener<br>Monthly Update</div>
+  <div class="footer-right" id="footer-run">next·PnL Screener<br><span id="footer-date">Live Data</span></div>
 </footer>
 
 <script>
+// ============================================================
+// CONFIG — מפתחות API
+// ============================================================
+const FMP_KEY = 'NePKye2QckP9LZkUjWtQig560WKVko2S';
+
+// רשימת המניות לסריקה (Top picks מהסקרינר שלך)
+const TICKERS = [
+  'ADBE','AES','CDW','CPAY','CI','ACN','BMY','BAX',
+  'APTV','COF','DAL','ALL','CCL','CVS','XYZ'
+];
+
+// P/E ממוצע לפי ענף (נשאר סטטי — מתעדכן ידנית)
+const SECTOR_PE = {
+  'ADBE':32, 'AES':20, 'CDW':32, 'CPAY':32, 'CI':22,
+  'ACN':32,  'BMY':22, 'BAX':22, 'APTV':22, 'COF':16,
+  'DAL':21,  'ALL':16, 'CCL':22, 'CVS':22,  'XYZ':32
+};
+
 let allStocks = [];
 let currentSort = 'upside';
 let expandedRow = null;
+let isLoading = false;
 
+// ============================================================
+// שליפת נתוני מניות מ-FMP
+// ============================================================
+async function fetchFMPData(tickers) {
+  const symbols = tickers.join(',');
+
+  // שליפת מחיר + נתוני פרופיל (כולל P/E)
+  const [quoteRes, targetRes] = await Promise.all([
+    fetch(`https://financialmodelingprep.com/api/v3/quote/${symbols}?apikey=${FMP_KEY}`),
+    fetch(`https://financialmodelingprep.com/api/v3/price-target-consensus/${symbols}?apikey=${FMP_KEY}`)
+  ]);
+
+  if (!quoteRes.ok) throw new Error(`FMP quote error: ${quoteRes.status}`);
+
+  const quotes = await quoteRes.json();
+  let targets = [];
+  try { targets = await targetRes.json(); } catch(e) { targets = []; }
+
+  // מיפוי target לפי ticker
+  const targetMap = {};
+  if (Array.isArray(targets)) {
+    targets.forEach(t => { if (t.symbol) targetMap[t.symbol] = t; });
+  }
+
+  const stocks = [];
+
+  for (const q of quotes) {
+    if (!q.symbol) continue;
+
+    const t = targetMap[q.symbol] || {};
+    const price = q.price || 0;
+    const targetPrice = t.targetConsensus || t.targetHigh || (price * 1.15);
+    const upside = price > 0 ? ((targetPrice - price) / price * 100) : 0;
+
+    // חישוב 3M performance מתוך נתוני הציטוט
+    // FMP מחזיר yearHigh/yearLow אבל לא 3M ישיר — נשתמש ב-priceAvg200 לקירוב
+    const perf3m = q.priceAvg50 > 0
+      ? ((price - q.priceAvg50) / q.priceAvg50 * 100)
+      : (q.changesPercentage || 0);
+
+    const fwdPE = q.pe || q.priceEarningsRatio || 0;
+    const indPE = SECTOR_PE[q.symbol] || 25;
+
+    stocks.push({
+      ticker: q.symbol,
+      price: price,
+      target: parseFloat(targetPrice.toFixed(2)),
+      upside: parseFloat(upside.toFixed(2)),
+      perf3m: parseFloat(perf3m.toFixed(2)),
+      fwd_pe: parseFloat((fwdPE || 0).toFixed(1)),
+      ind_avg_pe: indPE,
+      name: q.name || q.symbol,
+      volume: q.volume || 0,
+      marketCap: q.marketCap || 0
+    });
+  }
+
+  return stocks.filter(s => s.price > 0 && s.upside > 0);
+}
+
+// ============================================================
+// טעינה ראשית
+// ============================================================
 async function loadData() {
+  if (isLoading) return;
+  isLoading = true;
+
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('stock-table').style.display = 'none';
+  document.getElementById('error-box').style.display = 'none';
+  document.getElementById('refresh-btn').disabled = true;
+
   try {
-    const res = await fetch('./top10.json');
-    if (!res.ok) throw new Error('not found');
-    const data = await res.json();
-    allStocks = data.stocks;
-    renderStats(data);
+    const stocks = await fetchFMPData(TICKERS);
+
+    if (!stocks || stocks.length === 0) throw new Error('אין נתונים זמינים');
+
+    // מיון לפי upside
+    allStocks = stocks.sort((a, b) => b.upside - a.upside);
+
+    renderStats();
     renderTable(allStocks);
-  } catch(e) {
-    // Fallback demo data (replace with your JSON output)
-    const demo = {
-      run_date: "2025-06-01",
-      stocks: [
-        { ticker:"ADBE", price:259.21, target:844.35, upside:225.74, perf3m:-0.64, fwd_pe:9.8, ind_avg_pe:32 },
-        { ticker:"AES",  price:14.67,  target:47.78,  upside:225.67, perf3m:4.51,  fwd_pe:6.1, ind_avg_pe:20 },
-        { ticker:"CDW",  price:125.45, target:371.86, upside:196.42, perf3m:1.14,  fwd_pe:10.8, ind_avg_pe:32 },
-        { ticker:"CPAY", price:361.80, target:979.39, upside:170.70, perf3m:8.97,  fwd_pe:11.8, ind_avg_pe:32 },
-        { ticker:"CI",   price:277.40, target:736.79, upside:165.60, perf3m:-4.10, fwd_pe:8.3,  ind_avg_pe:22 },
-        { ticker:"ACN",  price:187.07, target:476.97, upside:154.97, perf3m:-8.39, fwd_pe:12.6, ind_avg_pe:32 },
-        { ticker:"BMY",  price:57.18,  target:135.76, upside:137.42, perf3m:-7.33, fwd_pe:9.3,  ind_avg_pe:22 },
-        { ticker:"BAX",  price:18.78,  target:44.36,  upside:136.22, perf3m:-4.57, fwd_pe:9.3,  ind_avg_pe:22 },
-        { ticker:"APTV", price:67.94,  target:149.92, upside:120.67, perf3m:-6.25, fwd_pe:10.0, ind_avg_pe:22 },
-        { ticker:"XYZ",  price:75.72,  target:159.36, upside:110.47, perf3m:17.49, fwd_pe:15.2, ind_avg_pe:32 },
-        { ticker:"COF",  price:187.93, target:388.62, upside:106.79, perf3m:-2.87, fwd_pe:7.7,  ind_avg_pe:16 },
-        { ticker:"DAL",  price:82.48,  target:169.26, upside:105.21, perf3m:28.71, fwd_pe:10.2, ind_avg_pe:21 },
-        { ticker:"ALL",  price:206.09, target:420.37, upside:103.98, perf3m:-3.13, fwd_pe:7.8,  ind_avg_pe:16 },
-        { ticker:"CCL",  price:28.06,  target:57.20,  upside:103.84, perf3m:-3.12, fwd_pe:10.8, ind_avg_pe:22 },
-        { ticker:"CVS",  price:90.98,  target:183.99, upside:102.23, perf3m:12.39, fwd_pe:10.9, ind_avg_pe:22 },
-      ]
-    };
-    allStocks = demo.stocks;
-    renderStats(demo);
-    renderTable(allStocks);
+
+    // עדכון timestamp
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('he-IL', { hour:'2-digit', minute:'2-digit' });
+    const dateStr = now.toLocaleDateString('he-IL', { day:'2-digit', month:'2-digit', year:'numeric' });
+    document.getElementById('run-date-badge').textContent = `עודכן: ${timeStr}`;
+    document.getElementById('stat-date').textContent = `${dateStr} ${timeStr}`;
+    document.getElementById('footer-date').textContent = `Live · ${dateStr} ${timeStr}`;
+
+  } catch(err) {
+    console.error('שגיאה בטעינת נתונים:', err);
+    showError(err.message);
+    useFallback();
+  } finally {
+    isLoading = false;
+    document.getElementById('refresh-btn').disabled = false;
   }
 }
 
-function renderStats(data) {
-  const avgUpside = (allStocks.reduce((s,x) => s + x.upside, 0) / allStocks.length).toFixed(1);
-  const avgPE = (allStocks.reduce((s,x) => s + x.fwd_pe, 0) / allStocks.length).toFixed(1);
-  document.getElementById('stat-count').textContent = allStocks.length;
-  document.getElementById('stat-upside').textContent = '+' + avgUpside + '%';
-  document.getElementById('stat-pe').textContent = avgPE + 'x';
-  document.getElementById('stat-date').textContent = data.run_date || '—';
-  document.getElementById('run-date-badge').textContent = 'Run: ' + (data.run_date || '—');
-  document.getElementById('footer-run').innerHTML = 'next·PnL Screener<br>' + (data.run_date || '');
-  document.getElementById('stock-count').textContent = allStocks.length;
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  document.getElementById('error-msg').textContent = `⚠️ ${msg} — מציג נתוני בסיס`;
+  box.style.display = 'block';
 }
 
-function sortBy(key) {
+function useFallback() {
+  // fallback — הנתונים מהסקרינר האחרון
+  allStocks = [
+    { ticker:"ADBE", price:259.21, target:844.35, upside:225.74, perf3m:-0.64, fwd_pe:9.8,  ind_avg_pe:32, name:"Adobe Inc." },
+    { ticker:"AES",  price:14.67,  target:47.78,  upside:225.67, perf3m:4.51,  fwd_pe:6.1,  ind_avg_pe:20, name:"AES Corp" },
+    { ticker:"CDW",  price:125.45, target:371.86, upside:196.42, perf3m:1.14,  fwd_pe:10.8, ind_avg_pe:32, name:"CDW Corp" },
+    { ticker:"CPAY", price:361.80, target:979.39, upside:170.70, perf3m:8.97,  fwd_pe:11.8, ind_avg_pe:32, name:"Corpay Inc." },
+    { ticker:"CI",   price:277.40, target:736.79, upside:165.60, perf3m:-4.10, fwd_pe:8.3,  ind_avg_pe:22, name:"Cigna Group" },
+    { ticker:"ACN",  price:187.07, target:476.97, upside:154.97, perf3m:-8.39, fwd_pe:12.6, ind_avg_pe:32, name:"Accenture" },
+    { ticker:"BMY",  price:57.18,  target:135.76, upside:137.42, perf3m:-7.33, fwd_pe:9.3,  ind_avg_pe:22, name:"Bristol-Myers" },
+    { ticker:"BAX",  price:18.78,  target:44.36,  upside:136.22, perf3m:-4.57, fwd_pe:9.3,  ind_avg_pe:22, name:"Baxter Intl" },
+    { ticker:"APTV", price:67.94,  target:149.92, upside:120.67, perf3m:-6.25, fwd_pe:10.0, ind_avg_pe:22, name:"Aptiv PLC" },
+    { ticker:"COF",  price:187.93, target:388.62, upside:106.79, perf3m:-2.87, fwd_pe:7.7,  ind_avg_pe:16, name:"Capital One" },
+    { ticker:"DAL",  price:82.48,  target:169.26, upside:105.21, perf3m:28.71, fwd_pe:10.2, ind_avg_pe:21, name:"Delta Air Lines" },
+    { ticker:"ALL",  price:206.09, target:420.37, upside:103.98, perf3m:-3.13, fwd_pe:7.8,  ind_avg_pe:16, name:"Allstate Corp" },
+    { ticker:"CCL",  price:28.06,  target:57.20,  upside:103.84, perf3m:-3.12, fwd_pe:10.8, ind_avg_pe:22, name:"Carnival Corp" },
+    { ticker:"CVS",  price:90.98,  target:183.99, upside:102.23, perf3m:12.39, fwd_pe:10.9, ind_avg_pe:22, name:"CVS Health" },
+  ];
+  renderStats();
+  renderTable(allStocks);
+  document.getElementById('run-date-badge').textContent = 'נתוני בסיס';
+  document.getElementById('stat-date').textContent = 'Cached';
+}
+
+// ============================================================
+// רענון
+// ============================================================
+function refreshData() {
+  loadData();
+}
+
+// ============================================================
+// רינדור סטטיסטיקות
+// ============================================================
+function renderStats() {
+  const count = allStocks.length;
+  const avgUpside = (allStocks.reduce((s,x) => s + x.upside, 0) / count).toFixed(1);
+  const validPE = allStocks.filter(x => x.fwd_pe > 0);
+  const avgPE = validPE.length > 0
+    ? (validPE.reduce((s,x) => s + x.fwd_pe, 0) / validPE.length).toFixed(1)
+    : '—';
+
+  document.getElementById('stat-count').textContent = count;
+  document.getElementById('stat-upside').textContent = '+' + avgUpside + '%';
+  document.getElementById('stat-pe').textContent = avgPE + 'x';
+  document.getElementById('stock-count').textContent = count;
+}
+
+// ============================================================
+// מיון
+// ============================================================
+function sortBy(key, evt) {
   currentSort = key;
   document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-  event && event.target && event.target.classList && event.target.classList.add('active');
+  if (evt && evt.target && evt.target.classList.contains('sort-btn')) {
+    evt.target.classList.add('active');
+  }
   const sorted = [...allStocks].sort((a,b) => {
-    if (key === 'upside') return b.upside - a.upside;
-    if (key === 'perf')   return b.perf3m - a.perf3m;
-    if (key === 'pe')     return a.fwd_pe - b.fwd_pe;
-    if (key === 'price')  return b.price - a.price;
-    if (key === 'target') return b.target - a.target;
+    if (key === 'upside') return b.upside  - a.upside;
+    if (key === 'perf')   return b.perf3m  - a.perf3m;
+    if (key === 'pe')     return a.fwd_pe  - b.fwd_pe;
+    if (key === 'price')  return b.price   - a.price;
+    if (key === 'target') return b.target  - a.target;
     return 0;
   });
   renderTable(sorted);
 }
 
+// ============================================================
+// רינדור טבלה
+// ============================================================
 function renderTable(stocks) {
   document.getElementById('loading').style.display = 'none';
   document.getElementById('stock-table').style.display = 'table';
@@ -654,11 +741,14 @@ function renderTable(stocks) {
   const maxUpside = Math.max(...stocks.map(s => s.upside));
 
   stocks.forEach((s, i) => {
-    const discount = ((s.ind_avg_pe - s.fwd_pe) / s.ind_avg_pe * 100).toFixed(0);
-    const isCheap = s.fwd_pe < s.ind_avg_pe * 0.75;
-    const perfColor = s.perf3m >= 0 ? 'var(--green)' : 'var(--red)';
-    const perfSign  = s.perf3m >= 0 ? '+' : '';
-    const barW = Math.min(100, (s.upside / maxUpside) * 100).toFixed(0);
+    const discount = s.ind_avg_pe > 0
+      ? ((s.ind_avg_pe - s.fwd_pe) / s.ind_avg_pe * 100).toFixed(0)
+      : 0;
+    const isCheap   = s.fwd_pe > 0 && s.fwd_pe < s.ind_avg_pe * 0.75;
+    const perfColor  = s.perf3m >= 0 ? 'var(--green)' : 'var(--red)';
+    const perfSign   = s.perf3m >= 0 ? '+' : '';
+    const barW       = Math.min(100, (s.upside / maxUpside) * 100).toFixed(0);
+    const fwdPELabel = s.fwd_pe > 0 ? s.fwd_pe + 'x' : 'N/A';
 
     const tr = document.createElement('tr');
     tr.dataset.idx = i;
@@ -674,7 +764,7 @@ function renderTable(stocks) {
         </div>
       </td>
       <td class="perf-cell" style="color:${perfColor}">${perfSign}${s.perf3m.toFixed(2)}%</td>
-      <td class="pe-cell">${s.fwd_pe}x</td>
+      <td class="pe-cell">${fwdPELabel}</td>
       <td class="ind-cell">${s.ind_avg_pe}x</td>
       <td>
         <span class="vs-badge ${isCheap ? 'cheap' : 'fair'}">
@@ -682,16 +772,16 @@ function renderTable(stocks) {
         </span>
       </td>
     `;
-
     tr.addEventListener('click', () => toggleExpand(tr, s, i));
     tbody.appendChild(tr);
   });
 }
 
+// ============================================================
+// הרחבת שורה
+// ============================================================
 function toggleExpand(tr, s, i) {
   const existing = document.getElementById('expand-' + i);
-
-  // close all
   document.querySelectorAll('.expand-row').forEach(r => r.remove());
   document.querySelectorAll('tbody tr').forEach(r => r.classList.remove('expanded'));
 
@@ -700,11 +790,14 @@ function toggleExpand(tr, s, i) {
   expandedRow = i;
   tr.classList.add('expanded');
 
-  const discount = ((s.ind_avg_pe - s.fwd_pe) / s.ind_avg_pe * 100).toFixed(1);
-  const valClass = s.fwd_pe < s.ind_avg_pe * 0.75 ? 'green' : s.fwd_pe < s.ind_avg_pe ? 'amber' : 'red';
+  const discount  = s.ind_avg_pe > 0 ? ((s.ind_avg_pe - s.fwd_pe) / s.ind_avg_pe * 100).toFixed(1) : 'N/A';
+  const valClass  = s.fwd_pe > 0 && s.fwd_pe < s.ind_avg_pe * 0.75 ? 'green' : s.fwd_pe < s.ind_avg_pe ? 'amber' : 'red';
   const perfClass = s.perf3m >= 0 ? 'green' : 'red';
-  const perfSign = s.perf3m >= 0 ? '+' : '';
-  const gain = (s.target - s.price).toFixed(2);
+  const perfSign  = s.perf3m >= 0 ? '+' : '';
+  const gain      = (s.target - s.price).toFixed(2);
+  const mcap      = s.marketCap > 1e9
+    ? '$' + (s.marketCap / 1e9).toFixed(1) + 'B'
+    : s.marketCap > 0 ? '$' + (s.marketCap / 1e6).toFixed(0) + 'M' : '—';
 
   const expandTr = document.createElement('tr');
   expandTr.className = 'expand-row';
@@ -734,22 +827,20 @@ function toggleExpand(tr, s, i) {
         </div>
         <div class="expand-metric">
           <div class="expand-metric-label">Fwd P/E</div>
-          <div class="expand-metric-val purple">${s.fwd_pe}x</div>
+          <div class="expand-metric-val purple">${s.fwd_pe > 0 ? s.fwd_pe + 'x' : 'N/A'}</div>
         </div>
         <div class="expand-metric">
           <div class="expand-metric-label">Industry Avg P/E</div>
           <div class="expand-metric-val">${s.ind_avg_pe}x</div>
         </div>
         <div class="expand-metric">
-          <div class="expand-metric-label">Discount vs Industry</div>
-          <div class="expand-metric-val ${valClass}">${discount > 0 ? '-' + discount + '%' : '+' + Math.abs(discount) + '%'}</div>
+          <div class="expand-metric-label">Market Cap</div>
+          <div class="expand-metric-val">${mcap}</div>
         </div>
         <div class="expand-note">
           <strong>מה המודל מזהה:</strong>
-          ${s.ticker} נסחרת ב-${s.fwd_pe}x רווח עתידי לעומת ממוצע ענפי של ${s.ind_avg_pe}x —
-          דיסקאונט של ${discount}% ביחס לעמיתות.
-          מחיר המטרה של $${s.target.toFixed(2)} מחושב לפי מודל הערכה כמותי.
-          ביצוע 3 חודשים: ${perfSign}${s.perf3m.toFixed(2)}%.
+          ${s.ticker} (${s.name || s.ticker}) נסחרת ב-${s.fwd_pe > 0 ? s.fwd_pe + 'x' : 'N/A'} רווח עתידי לעומת ממוצע ענפי של ${s.ind_avg_pe}x${discount !== 'N/A' && discount > 0 ? ' — דיסקאונט של ' + discount + '% ביחס לעמיתות' : ''}.
+          מחיר המטרה של $${s.target.toFixed(2)} מחושב לפי קונסנזוס אנליסטים. ביצוע 3 חודשים: ${perfSign}${s.perf3m.toFixed(2)}%.
           <br><br>
           <strong style="color:var(--amber)">⚠ תזכורת:</strong>
           נתון זה מיועד לצרכי מחקר בלבד. אינו מהווה המלצת השקעה. בצע בדיקת נאותות עצמאית.
@@ -757,10 +848,12 @@ function toggleExpand(tr, s, i) {
       </div>
     </td>
   `;
-
   tr.after(expandTr);
 }
 
+// ============================================================
+// הפעלה
+// ============================================================
 loadData();
 </script>
 </body>

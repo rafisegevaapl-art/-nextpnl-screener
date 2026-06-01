@@ -16,7 +16,7 @@
     {
       "fund_id": "5110099",
       "name": "מור 15/85 דינמית",
-      "category": "אג\"ח כללי",
+      "category": "אגח כללי",
       "score": 80.5,
       "return_12m": 9.6,
       "aum": 1750.0,
@@ -52,7 +52,7 @@
     {
       "fund_id": "5120011",
       "name": "ילין לפידות 20/80",
-      "category": "אג\"ח כללי",
+      "category": "אגח כללי",
       "score": 71.3,
       "return_12m": 8.9,
       "aum": 2100.0,
@@ -72,13 +72,6 @@
       "net_flows_30d": 85.0,
       "turnover_ratio": 3.1,
       "category_avg_fee": 0.14
-    },
-    {
-      "fund_id": "5129876", "name": "ילין לפידות מניות ישראל", "category": "מניות בארץ", "score": 57.3, "return_12m": 14.8, "aum": 1200.0, "management_fee": 1.4, "net_flows_30d": 12.0, "turnover_ratio": 8.2, "category_avg_fee": 1.44},
-    {"fund_id": "5157788", "name": "איביאי אג\"ח מניבה", "category": "אג\"ח כללי", "score": 55.4, "return_12m": 7.8, "aum": 680.0, "management_fee": 0.7, "net_flows_30d": 18.4, "turnover_ratio": 7.8, "category_avg_fee": 0.81},
-    {"fund_id": "5134561", "name": "אנליסט מניות ישראל", "category": "מניות בארץ", "score": 45.3, "return_12m": 17.1, "aum": 420.0, "management_fee": 1.6, "net_flows_30d": -5.4, "turnover_ratio": 22.1, "category_avg_fee": 1.44},
-    {"fund_id": "5145566", "name": "מגדל כספית מנוהלת", "category": "קרנות כספיות", "score": 39.5, "return_12m": 3.95, "aum": 1500.0, "management_fee": 0.22, "net_flows_30d": -40.2, "turnover_ratio": 4.0, "category_avg_fee": 0.14},
-    {"fund_id": "5105544", "name": "אלטשולר שחם אג\"ח פלוס", "category": "אג\"ח כללי", "score": 0.0, "return_12m": 6.4, "aum": 4500.0, "management_fee": 0.9, "net_flows_30d": -210.0, "turnover_ratio": 11.0, "category_avg_fee": 0.81},
-    {"fund_id": "5101122", "name": "אלטשולר שחם מניות ישראל", "category": "מניות בארץ", "score": 0.0, "return_12m": 11.2, "aum": 3400.5, "management_fee": 1.5, "net_flows_30d": -120.0, "turnover_ratio": 14.0, "category_avg_fee": 1.44}
+    }
   ]
 }
